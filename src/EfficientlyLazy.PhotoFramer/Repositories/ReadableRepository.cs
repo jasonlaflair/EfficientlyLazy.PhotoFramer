@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
@@ -20,7 +19,7 @@ namespace EfficientlyLazy.PhotoFramer.Repositories
 
         protected ISession Session { get; private set; }
         
-        public virtual T Get(Guid id)
+        public virtual T Get(long id)
         {
             return Session.Get<T>(id);
         }

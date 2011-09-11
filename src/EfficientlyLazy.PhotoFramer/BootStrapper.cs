@@ -1,4 +1,5 @@
-﻿using EfficientlyLazy.PhotoFramer.Modules;
+﻿using EfficientlyLazy.PhotoFramer.Entities;
+using EfficientlyLazy.PhotoFramer.Modules;
 
 namespace EfficientlyLazy.PhotoFramer
 {
@@ -7,7 +8,7 @@ namespace EfficientlyLazy.PhotoFramer
         public static void Start()
         {
             ServiceFactory.Initialize(
-                new NHibernateComponentModule<Person>(),
+                new NHibernateComponentModule<Photo>(),
                 new ServiceComponentModule());
         }
     }

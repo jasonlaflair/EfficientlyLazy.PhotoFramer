@@ -5,3 +5,5 @@ src/_ReSharper.EfficientlyLazy.PhotoFramer/*
 src/EfficientlyLazy.PhotoFramer.UI/bin/*
 src/EfficientlyLazy.PhotoFramer.UI/obj/*
 src/EfficientlyLazy.PhotoFramer/obj/*
+src/EfficientlyLazy.PhotoFramer/bin/*
+/src/EfficientlyLazy.PhotoFramer.UI/EfficientlyLazy.PhotoFramer.UI.csproj.ReSharper

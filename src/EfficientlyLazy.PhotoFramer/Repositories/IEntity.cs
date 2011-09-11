@@ -4,7 +4,7 @@ namespace EfficientlyLazy.PhotoFramer.Repositories
 {
     public interface IEntity
     {
-        Guid ID { get; set; }
+        long ID { get; set; }
         int Version { get; set; }
     }
 }

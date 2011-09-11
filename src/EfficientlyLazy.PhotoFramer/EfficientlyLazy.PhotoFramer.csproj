@@ -51,8 +51,20 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\lib\FluentNHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\lib\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SQLite\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\..\lib\SQLite\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -60,6 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BootStrapper.cs" />
+    <Compile Include="Entities\AppSetting.cs" />
+    <Compile Include="Entities\Photo.cs" />
+    <Compile Include="Mappings\AppSettingMap.cs" />
+    <Compile Include="Mappings\PhotoMap.cs" />
     <Compile Include="Modules\EnumConvention.cs" />
     <Compile Include="Modules\NHibernateComponentModule.cs" />
     <Compile Include="Modules\ServiceComponentModule.cs" />
@@ -73,6 +89,9 @@
     <Compile Include="Repositories\WriteableRepository.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="ServiceFactoryVisibleAttribute.cs" />
+    <Compile Include="Services\AppSettings.cs" />
+    <Compile Include="Services\PhotoService.cs" />
+    <Compile Include="Services\IPhotoService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

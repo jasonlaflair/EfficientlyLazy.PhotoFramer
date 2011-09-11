@@ -1,11 +1,13 @@
+using System.IO;
 using Autofac;
 using EfficientlyLazy.PhotoFramer.Repositories;
+using EfficientlyLazy.PhotoFramer.Services;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.ByteCode.Castle;
 using NHibernate.Cfg;
-
+using NHibernate.Tool.hbm2ddl;
 
 namespace EfficientlyLazy.PhotoFramer.Modules
 {
@@ -14,12 +16,17 @@ namespace EfficientlyLazy.PhotoFramer.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var dbFile = Path.Combine(AppSettings.AppRoot, "PhotoFramer.db");
+
             var config = Fluently.Configure()
                 .ProxyFactoryFactory<ProxyFactoryFactory>()
-                .Database(MsSqlConfiguration.MsSql2005.ConnectionString(x => x.Server(".\\SQL2005").TrustedConnection().Database("IocTesting")))
+                .Database(SQLiteConfiguration.Standard.UsingFile(dbFile))
                 //.ExposeConfiguration(SetProperties)
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<T>().Conventions.AddFromAssemblyOf<T>())
                 .BuildConfiguration();
+
+            var schemaUpdate = new SchemaUpdate(config);
+            schemaUpdate.Execute(false, true);
 
             var sessionFactory = config.BuildSessionFactory();
 

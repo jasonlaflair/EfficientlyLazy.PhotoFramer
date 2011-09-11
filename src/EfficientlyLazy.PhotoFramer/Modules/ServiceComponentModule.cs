@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Linq;
+using Autofac;
 
 namespace EfficientlyLazy.PhotoFramer.Modules
 {
@@ -6,10 +7,10 @@ namespace EfficientlyLazy.PhotoFramer.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterAssemblyTypes(typeof(BootStrapper).Assembly)
-            //    .Where(t => t.GetCustomAttributes(typeof(ServiceFactoryVisibleAttribute), false).Any())
-            //    .AsSelf()
-            //    .AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(BootStrapper).Assembly)
+                .Where(t => t.GetCustomAttributes(typeof(ServiceFactoryVisibleAttribute), false).Any())
+                .AsSelf()
+                .AsImplementedInterfaces();
         }
     }
 }
