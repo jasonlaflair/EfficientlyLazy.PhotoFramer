@@ -74,6 +74,7 @@
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Entities\AppSetting.cs" />
     <Compile Include="Entities\Photo.cs" />
+    <Compile Include="Entities\UpdateResults.cs" />
     <Compile Include="Mappings\AppSettingMap.cs" />
     <Compile Include="Mappings\PhotoMap.cs" />
     <Compile Include="Modules\EnumConvention.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="ServiceFactoryVisibleAttribute.cs" />
     <Compile Include="Services\AppSettings.cs" />
+    <Compile Include="Services\ImageUtilities.cs" />
     <Compile Include="Services\PhotoService.cs" />
     <Compile Include="Services\IPhotoService.cs" />
   </ItemGroup>

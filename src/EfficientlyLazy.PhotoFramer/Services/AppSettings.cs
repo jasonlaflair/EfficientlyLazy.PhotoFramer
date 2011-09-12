@@ -24,14 +24,20 @@ namespace EfficientlyLazy.PhotoFramer.Services
 
         public static int FrameHeight
         {
-            get { return Get("FrameHeight", 0); }
+            get { return Get("FrameHeight", 600); }
             set { Set("FrameHeight", value); }
         }
 
         public static int FrameWidth
         {
-            get { return Get("FrameWidth", 0); }
+            get { return Get("FrameWidth", 800); }
             set { Set("FrameWidth", value); }
+        }
+
+        public static bool ResizeForFrame
+        {
+            get { return Get("ResizeForFrame", false); }
+            set { Set("ResizeForFrame", value); }
         }
 
         public static string CameraRoot

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using EfficientlyLazy.PhotoFramer.Repositories;
 using EfficientlyLazy.PhotoFramer.Services;
 
@@ -40,8 +41,15 @@ namespace EfficientlyLazy.PhotoFramer.Entities
             ShelfPath = string.Empty;
             Description = string.Empty;
             IncludeOnFrame = true;
-            FrameFilename = string.Empty;
+            FrameFilename = GenerateUniqueFilename();
             MarkedAsDeleted = false;
+        }
+
+        private string GenerateUniqueFilename()
+        {
+            var i = Guid.NewGuid().ToByteArray().Aggregate<byte, long>(1, (current, b) => current*(b + 1));
+
+            return string.Format("{0:x}.jpg", i - DateTime.Now.Ticks);
         }
     }
 }

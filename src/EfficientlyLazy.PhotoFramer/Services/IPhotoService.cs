@@ -7,5 +7,7 @@ namespace EfficientlyLazy.PhotoFramer.Services
         Photo AddPhoto(string filename, bool deleteOriginal);
         int AddPhotos(string directory, bool deleteOriginals);
         void Cleanup();
+
+        UpdateResults UpdateFrame();
     }
 }

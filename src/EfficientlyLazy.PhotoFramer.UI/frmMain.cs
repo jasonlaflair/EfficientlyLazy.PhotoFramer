@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using EfficientlyLazy.PhotoFramer.Entities;
+using EfficientlyLazy.PhotoFramer.Services;
 
 namespace EfficientlyLazy.PhotoFramer.UI
 {
@@ -34,6 +35,23 @@ namespace EfficientlyLazy.PhotoFramer.UI
         private void cmdViewer_Click(object sender, EventArgs e)
         {
             using (var frm = new frmViewer())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void cmdUpdateFrame_Click(object sender, EventArgs e)
+        {
+            var service = ServiceFactory.Resolve<IPhotoService>();
+
+            var results = service.UpdateFrame();
+
+            MessageBox.Show(string.Format("Update Complete - {0} Added - {1} Removed", results.Added, results.Removed), "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cmdSettings_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmSettings())
             {
                 frm.ShowDialog();
             }

@@ -30,6 +30,8 @@
         {
             this.cmdLoadFromCamera = new System.Windows.Forms.Button();
             this.cmdViewer = new System.Windows.Forms.Button();
+            this.cmdUpdateFrame = new System.Windows.Forms.Button();
+            this.cmdSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdLoadFromCamera
@@ -52,11 +54,33 @@
             this.cmdViewer.UseVisualStyleBackColor = true;
             this.cmdViewer.Click += new System.EventHandler(this.cmdViewer_Click);
             // 
+            // cmdUpdateFrame
+            // 
+            this.cmdUpdateFrame.Location = new System.Drawing.Point(12, 132);
+            this.cmdUpdateFrame.Name = "cmdUpdateFrame";
+            this.cmdUpdateFrame.Size = new System.Drawing.Size(215, 54);
+            this.cmdUpdateFrame.TabIndex = 2;
+            this.cmdUpdateFrame.Text = "Update Frame";
+            this.cmdUpdateFrame.UseVisualStyleBackColor = true;
+            this.cmdUpdateFrame.Click += new System.EventHandler(this.cmdUpdateFrame_Click);
+            // 
+            // cmdSettings
+            // 
+            this.cmdSettings.Location = new System.Drawing.Point(12, 192);
+            this.cmdSettings.Name = "cmdSettings";
+            this.cmdSettings.Size = new System.Drawing.Size(215, 54);
+            this.cmdSettings.TabIndex = 3;
+            this.cmdSettings.Text = "Settings";
+            this.cmdSettings.UseVisualStyleBackColor = true;
+            this.cmdSettings.Click += new System.EventHandler(this.cmdSettings_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 137);
+            this.ClientSize = new System.Drawing.Size(238, 259);
+            this.Controls.Add(this.cmdSettings);
+            this.Controls.Add(this.cmdUpdateFrame);
             this.Controls.Add(this.cmdViewer);
             this.Controls.Add(this.cmdLoadFromCamera);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -74,6 +98,8 @@
 
         private System.Windows.Forms.Button cmdLoadFromCamera;
         private System.Windows.Forms.Button cmdViewer;
+        private System.Windows.Forms.Button cmdUpdateFrame;
+        private System.Windows.Forms.Button cmdSettings;
 
     }
 }

@@ -68,7 +68,7 @@ namespace EfficientlyLazy.PhotoFramer.Services
                                 Description = string.Empty,
                                 OriginalFileName = filename,
                                 Filename = Path.GetFileName(filename),
-                                IncludeOnFrame = false,
+                                IncludeOnFrame = true,
                                 ShelfPath = string.Format("{0:0000}\\{1:00}", fileDate.Year, fileDate.Month)
                             };
 
@@ -234,6 +234,73 @@ namespace EfficientlyLazy.PhotoFramer.Services
                                     ShelfPath = shelf
                                 });
             }
+        }
+
+        public virtual UpdateResults UpdateFrame()
+        {
+            var framePath = new DirectoryInfo(AppSettings.FrameRoot);
+            var frameFiles = framePath.GetFiles("*.jpg").Select(x => x.Name);
+
+            var framePhotos = _photoRepository.Query().Where(x => x.IncludeOnFrame && !x.MarkedAsDeleted);
+            var expectedFiles = framePhotos.Select(x => x.FrameFilename).Distinct().ToList();
+
+            var toAdd = expectedFiles.Except(frameFiles).ToList();
+            var toDelete = frameFiles.Except(expectedFiles).ToList();
+
+            foreach (var delete in toDelete)
+            {
+                File.Delete(delete);
+            }
+
+            foreach (var photo in framePhotos)
+            {
+                if (!toAdd.Contains(photo.FrameFilename))
+                {
+                    continue;
+                }
+
+                PushToFrame(photo);
+            }
+
+            return new UpdateResults
+                       {
+                           Added = toAdd.Count,
+                           Removed = toDelete.Count
+                       };
+        }
+
+        internal virtual void PushToFrame(Photo photo)
+        {
+            var destination = Path.Combine(AppSettings.FrameRoot, photo.FrameFilename);
+
+            Image resize;
+
+            if (AppSettings.ResizeForFrame)
+            {
+                var image = Image.FromFile(photo.FullFilename);
+
+                int newWidth;
+                int newHeight;
+
+                if (image.Width > image.Height)
+                {
+                    newWidth = AppSettings.FrameWidth;
+                    newHeight = newWidth * image.Height / AppSettings.FrameHeight;
+                }
+                else
+                {
+                    newHeight = AppSettings.FrameHeight;
+                    newWidth = newHeight * image.Width / AppSettings.FrameWidth;
+                }
+
+                resize = ImageUtilities.ResizeImage(image, newWidth, newHeight);
+            }
+            else
+            {
+                resize = Image.FromFile(photo.FullFilename);
+            }
+
+            ImageUtilities.SaveJpeg(destination, resize, 100);
         }
     }
 }

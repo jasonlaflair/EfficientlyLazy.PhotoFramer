@@ -13,8 +13,9 @@ namespace EfficientlyLazy.PhotoFramer.UI
         static void Main()
         {
             BootStrapper.Start();
-
+            
             AppSettings.CameraRoot = @"C:\Users\Jason\Desktop\CameraPath";
+            AppSettings.FrameRoot = @"C:\Users\Jason\Desktop\FramePath";
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
